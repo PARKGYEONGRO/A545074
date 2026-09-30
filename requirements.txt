@@ -1,0 +1,12 @@
+# python -m pip install -r requirements.txt
+numpy
+pillow
+torch
+torchvision
+opencv-python
+albumentations
+scikit-learn
+pandas
+matplotlib
+tqdm
+pyyaml
