@@ -1,12 +1,16 @@
 # python -m pip install -r requirements.txt
 numpy
 pillow
-torch
-torchvision
 opencv-python
 albumentations
 scikit-learn
+segmentation-models-pytorch
 pandas
 matplotlib
 tqdm
 pyyaml
+
+# scripts/test_model.py 확인시 GPU가 있음에도 캐치가 되지 않으면 아래 방식으로 교체 필요
+# python -m pip install torch==2.14.0 torchvision --index-url https://download.pytorch.org/whl/cu132
+torch==2.14.0
+torchvision
