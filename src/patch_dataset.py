@@ -138,6 +138,23 @@ class KoMaPPatchDataset(Dataset):
 
         return Positions
 
+    # Original Mask Retrieval
+    def Get_Original_Mask(self, Image_Path):
+        Image_Path = Path(Image_Path)
+
+        Mask_Key = Image_Path.stem.replace('_image', '')
+
+        if Mask_Key not in self.Base_Dataset.Mask_Paths:
+            raise KeyError(f'Original mask not found: {Mask_Key}')
+
+        Mask_Path = self.Base_Dataset.Mask_Paths[Mask_Key]
+
+        with Image.open(Mask_Path) as Mask_File:
+            Mask_Numpy = self.Base_Dataset._Encode_Mask(Mask_File)
+
+        Mask_Tensor = torch.from_numpy(Mask_Numpy.copy()).long()
+
+        return Mask_Tensor
 
     # Dataset Length
     def __len__(self):

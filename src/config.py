@@ -1,4 +1,4 @@
-# Project 전체에서 사용할 경로, 클래스, Mask 색상, 학습 기본 설정 이곳에서 관리
+# config.py / Project 전체에서 사용할 경로, 클래스, Mask 색상, 학습 기본 설정 이곳에서 관리
 
 from pathlib import Path
 

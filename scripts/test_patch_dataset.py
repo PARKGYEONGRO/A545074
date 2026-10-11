@@ -4,6 +4,7 @@
 
 import sys
 from pathlib import Path
+from PIL import Image
 
 import torch
 
@@ -337,6 +338,7 @@ def Main():
     Valid_Dataset = KoMaPPatchDataset(
         Image_Dir=VALID_IMAGE_DIR,
         Mask_Dir=VALID_MASK_DIR,
+        Transform=None,
         Is_Test=False
     )
 
@@ -369,6 +371,25 @@ def Main():
         Dataset_Name='Test'
     )
 
+    Sample = Valid_Dataset[0]
+
+    Original_Mask = Valid_Dataset.Get_Original_Mask(Sample['image_path'])
+
+    with Image.open(Sample['image_path']) as Image_File:
+
+        Original_Width, Original_Height = Image_File.size
+
+    print('\n[Original Mask Test]')
+    print('Image Path     :', Sample['image_path'])
+    print('Original Shape :', tuple(Original_Mask.shape))
+    print('Mask Dtype     :', Original_Mask.dtype)
+    print('Mask Classes   :', torch.unique(Original_Mask).tolist())
+    assert Original_Mask.ndim == 2
+    assert Original_Mask.shape == (Original_Height, Original_Width), '원본 이미지와 정답 마스크의 크기가 다릅니다.'
+    assert Original_Mask.dtype == torch.int64
+    assert set(torch.unique(Original_Mask).tolist()).issubset({0, 1, 2, 3})
+
+    print('[PASS] Original Mask Retrieval Test')
 
     # Final Result
     print()

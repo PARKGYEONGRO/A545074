@@ -1,4 +1,4 @@
-# Dataset 클래스 정의
+# dataset.py / Dataset 클래스 정의
 
 from pathlib import Path
 
@@ -224,7 +224,7 @@ class KoMaPDataset(Dataset):
 
             raise ValueError(
                 'Image와 Mask의 해상도가 다릅니다.\n'
-                f'Image: {Image_Path} {Image.size}\n'
+                f'Image: {Image_Path} {Image_File.size}\n'
                 f'Mask : {Mask_Path} {Mask.size}'
             )
 
