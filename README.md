@@ -31,19 +31,14 @@
 - `torchmetrics`: IoU, mIoU 등 평가 지표
 - `PyYAML`: 학습·모델 설정 관리
 
-초기에는 일반 PyTorch 학습 구조와 YAML 설정 파일을 사용합니다. Lightning, Hydra 등 대형 프레임워크는 기본 파이프라인이 안정화된 후 필요할 때 검토
-
 ## 프로젝트 구조
 
 ```text
 .
-├── configs/        # 모델·학습 설정 YAML
 ├── data/           # 대회 데이터 (Git 추적 제외)
-├── notebooks/      # EDA·시각화·오류 분석용 .ipynb
 ├── src/            # 데이터셋, 모델, 손실함수, 평가 로직
 ├── scripts/        # 학습, 검증, 추론 실행 스크립트
-├── checkpoints/    # 모델 가중치 (Git 추적 제외)
-├── outputs/        # 예측 결과·시각화 (Git 추적 제외)
+├── outputs/        # 예측 결과·시각화, 모델 가중치 (Git 추적 제외)
 ├── environment.yaml
 └── README.md
 ```
