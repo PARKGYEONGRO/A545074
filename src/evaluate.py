@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-import numpy as np
 import torch
 import sys
 
@@ -61,8 +60,8 @@ def Get_Original_Image_Size(Image_Path):
     return Height, Width
 
 
-# 3. Original Image Prediction Reconstructioin
-def Reconstruct_Original_Preditions(Model, Valid_Dataset, Valid_Dataloader, Device):
+# 3. Original Image Prediction Reconstruction
+def Reconstruct_Original_Predictions(Model, Valid_Dataset, Valid_Dataloader, Device):
     Model.eval()
 
     # 3-1. Image Accumulator
@@ -77,7 +76,7 @@ def Reconstruct_Original_Preditions(Model, Valid_Dataset, Valid_Dataloader, Devi
             Patch_Xs = Batch['x']
             Patch_Ys = Batch['y']
 
-            # 3-2. Patch Prediciton
+            # 3-2. Patch Prediction
             Logits = Model(Images)
 
             Probabilities = torch.softmax(Logits, dim=1)
@@ -187,7 +186,7 @@ def Evaluate_Model(Model, Device=None):
     Model = Model.to(Device)
 
     Original_Predictions = (
-        Reconstruct_Original_Preditions(
+        Reconstruct_Original_Predictions(
             Model=Model,
             Valid_Dataset=Valid_Dataset,
             Valid_Dataloader=Valid_Dataloader,
